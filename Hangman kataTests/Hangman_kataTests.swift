@@ -17,20 +17,23 @@ class Hangman_kataTests: XCTestCase {
         sut = Hangman()
     }
     
-    func test_stateShouldReturnEmptyString() {
-        let result = sut.state()
-        XCTAssertEqual(result, "")
-    }
-    
     func test_stateShouldReturnActualStatus() {
-        let result = sut.state()
+        let result = sut.state().gameStatus
         XCTAssertEqual(result, .inProgress)
     }
 
 }
 
+struct HangmanState {
+    var gameStatus: GameStatus
+}
+
+enum GameStatus {
+    case inProgress
+}
+
 public class Hangman {
-    func state() -> String {
-        ""
+    func state() -> HangmanState {
+        return HangmanState(gameStatus: .inProgress)
     }
 }
