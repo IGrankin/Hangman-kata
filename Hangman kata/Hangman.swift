@@ -39,6 +39,7 @@ public class Hangman {
         let regex = try! NSRegularExpression(pattern: "[A-Za-z]")
         if regex.firstMatch(in: letter, range: range) != nil {
             userGuesses += "\(letter.capitalized) "
+            leftGuesses -= 1
         }
     }
     
