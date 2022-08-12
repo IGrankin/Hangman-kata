@@ -67,7 +67,7 @@ class Hangman_kataTests: XCTestCase {
     func test_correctLetterShouldDecreaseLeftGuessesCountAndShowThisLetterInHiddenLetters() {
         sut.guess("w")
         let result = sut.state()
-        XCTAssertEqual(result.leftGuesses, 3)
+        XCTAssertEqual(result.leftGuesses, 4)
         XCTAssertEqual(result.letters, "W###")
     }
     
@@ -79,7 +79,7 @@ class Hangman_kataTests: XCTestCase {
         let result = sut.state()
         XCTAssertEqual(result.gameStatus, .win)
         XCTAssertEqual(result.letters, "WORD")
-        XCTAssertEqual(result.leftGuesses, 0)
+        XCTAssertEqual(result.leftGuesses, 4)
         XCTAssertEqual(result.guesses, "W O R D ")
     }
     
@@ -92,7 +92,7 @@ class Hangman_kataTests: XCTestCase {
         let result = sut.state()
         XCTAssertEqual(result.gameStatus, .win)
         XCTAssertEqual(result.letters, "WORD")
-        XCTAssertEqual(result.leftGuesses, 0)
+        XCTAssertEqual(result.leftGuesses, 4)
         XCTAssertEqual(result.guesses, "W O R D ")
     }
     
@@ -106,7 +106,7 @@ class Hangman_kataTests: XCTestCase {
         XCTAssertEqual(result.gameStatus, .lost)
         XCTAssertEqual(result.letters, "W###")
         XCTAssertEqual(result.leftGuesses, 0)
-        XCTAssertEqual(result.guesses, "W A L E ")
+        XCTAssertEqual(result.guesses, "W A L E Y ")
     }
     
     func test_guessOpen2SameSymbols() {
@@ -146,20 +146,20 @@ class Hangman_kataTests: XCTestCase {
         sut.guess("L")
         XCTAssertEqual(sut.state().gameStatus, .inProgress)
         XCTAssertEqual(sut.state().letters, "##LL")
-        XCTAssertEqual(sut.state().leftGuesses, 1)
+        XCTAssertEqual(sut.state().leftGuesses, 2)
         XCTAssertEqual(sut.state().guesses, "X L ")
         
         sut.guess("Y")
-        XCTAssertEqual(sut.state().gameStatus, .lost)
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
         XCTAssertEqual(sut.state().letters, "##LL")
-        XCTAssertEqual(sut.state().leftGuesses, 0)
+        XCTAssertEqual(sut.state().leftGuesses, 1)
         XCTAssertEqual(sut.state().guesses, "X L Y ")
         
         sut.guess("Z")
         XCTAssertEqual(sut.state().gameStatus, .lost)
         XCTAssertEqual(sut.state().letters, "##LL")
         XCTAssertEqual(sut.state().leftGuesses, 0)
-        XCTAssertEqual(sut.state().guesses, "X L Y ")
+        XCTAssertEqual(sut.state().guesses, "X L Y Z ")
     }
     
     func test_exampleWithWin() {
@@ -190,25 +190,25 @@ class Hangman_kataTests: XCTestCase {
         sut.guess("L")
         XCTAssertEqual(sut.state().gameStatus, .inProgress)
         XCTAssertEqual(sut.state().letters, "##LL")
-        XCTAssertEqual(sut.state().leftGuesses, 1)
+        XCTAssertEqual(sut.state().leftGuesses, 2)
         XCTAssertEqual(sut.state().guesses, "X L ")
         
         sut.guess("Y")
-        XCTAssertEqual(sut.state().gameStatus, .lost)
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
         XCTAssertEqual(sut.state().letters, "##LL")
-        XCTAssertEqual(sut.state().leftGuesses, 0)
+        XCTAssertEqual(sut.state().leftGuesses, 1)
         XCTAssertEqual(sut.state().guesses, "X L Y ")
         
         sut.guess("B")
-        XCTAssertEqual(sut.state().gameStatus, .lost)
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
         XCTAssertEqual(sut.state().letters, "B#LL")
-        XCTAssertEqual(sut.state().leftGuesses, 0)
+        XCTAssertEqual(sut.state().leftGuesses, 1)
         XCTAssertEqual(sut.state().guesses, "X L Y B ")
         
         sut.guess("E")
-        XCTAssertEqual(sut.state().gameStatus, .lost)
-        XCTAssertEqual(sut.state().letters, "##LL")
-        XCTAssertEqual(sut.state().leftGuesses, 0)
+        XCTAssertEqual(sut.state().gameStatus, .win)
+        XCTAssertEqual(sut.state().letters, "BELL")
+        XCTAssertEqual(sut.state().leftGuesses, 1)
         XCTAssertEqual(sut.state().guesses, "X L Y B E ")
     }
 }

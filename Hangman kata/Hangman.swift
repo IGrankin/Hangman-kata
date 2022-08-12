@@ -44,13 +44,18 @@ public class Hangman {
         
         if isAppliable(letter: capitalizedLetter) {
             userGuesses += "\(capitalizedLetter) "
-            leftGuesses -= 1
             
-            hiddenWord = openIfNeeded(
+            let updatedHiddenWord = openIfNeeded(
                 letter: capitalizedLetter,
                 in: hiddenWord,
                 using: guessedWord
             )
+            
+            if updatedHiddenWord == hiddenWord {
+                leftGuesses -= 1
+            }
+            
+            hiddenWord = updatedHiddenWord
             
             gameStatus = updateGameStatus(
                 hiddenWord: hiddenWord,
@@ -70,7 +75,7 @@ public class Hangman {
     }
     
     func updateGameStatus(hiddenWord: String, leftGuesses: Int, previousStatus: GameStatus) -> GameStatus {
-        if !hiddenWord.contains("#") && leftGuesses == 0 {
+        if !hiddenWord.contains("#") {
             return .win
         }
         
