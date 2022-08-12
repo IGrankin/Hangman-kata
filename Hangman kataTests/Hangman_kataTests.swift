@@ -14,10 +14,11 @@ class Hangman_kataTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = Hangman(guessedWord: "", guesses: 0)
+        sut = Hangman(guessedWord: "word", guesses: 4)
     }
     
     func test_stateShouldReturnActualStatus() {
+        sut = Hangman(guessedWord: "", guesses: 0)
         let result = sut.state().gameStatus
         XCTAssertEqual(result, .inProgress)
     }
@@ -29,34 +30,29 @@ class Hangman_kataTests: XCTestCase {
     }
     
     func test_stateShouldReturnLeftGuessesCount() {
-        sut = Hangman(guessedWord: "word", guesses: 4)
         let result = sut.state().leftGuesses
         XCTAssertEqual(result, 4)
     }
     
     func test_stateShouldReturnUserGuesses() {
-        sut = Hangman(guessedWord: "word", guesses: 4)
         sut.guess("B")
         let result = sut.state().guesses
         XCTAssertEqual(result, "B ")
     }
     
     func test_guessShouldIngoreNumbers() {
-        sut = Hangman(guessedWord: "word", guesses: 4)
         sut.guess("1")
         let result = sut.state().guesses
         XCTAssertEqual(result, "")
     }
     
     func test_guessShouldIngoreStringsWithSizeMoreThan1() {
-        sut = Hangman(guessedWord: "word", guesses: 4)
         sut.guess("bb")
         let result = sut.state().guesses
         XCTAssertEqual(result, "")
     }
     
     func test_guessShouldApproveLowercasesSymbols() {
-        sut = Hangman(guessedWord: "word", guesses: 4)
         sut.guess("b")
         let result = sut.state().guesses
         XCTAssertEqual(result, "B ")
