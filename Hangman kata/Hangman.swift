@@ -10,6 +10,7 @@ import Foundation
 public struct HangmanState {
     var gameStatus: GameStatus
     var letters: String
+    var leftGuesses: Int
 }
 
 public enum GameStatus {
@@ -20,15 +21,18 @@ public enum GameStatus {
 public class Hangman {
     
     private var guessedWord: String
+    private var leftGuesses: Int
     
-    init(guessedWord: String) {
+    init(guessedWord: String, guesses: Int) {
         self.guessedWord = guessedWord
+        self.leftGuesses = guesses
     }
     
     func state() -> HangmanState {
         return HangmanState(
             gameStatus: .inProgress,
-            letters: guessedWord.hiddenString()
+            letters: guessedWord.hiddenString(),
+            leftGuesses: leftGuesses
         )
     }
 }

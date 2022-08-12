@@ -14,7 +14,7 @@ class Hangman_kataTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = Hangman(guessedWord: "")
+        sut = Hangman(guessedWord: "", guesses: 0)
     }
     
     func test_stateShouldReturnActualStatus() {
@@ -23,7 +23,7 @@ class Hangman_kataTests: XCTestCase {
     }
     
     func test_stateShouldReturnEqualSizeStringLettersForGussedWord() {
-        sut = Hangman(guessedWord: "word")
+        sut = Hangman(guessedWord: "word", guesses: 0)
         let result = sut.state().letters
         XCTAssertEqual(result, "####")
     }
