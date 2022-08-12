@@ -26,5 +26,11 @@ class Hangman_kataTests: XCTestCase {
         let result = sut.state().letters
         XCTAssertEqual(result, "")
     }
+    
+    func test_stateShouldReturnEqualSizeStringLettersForGussedWord() {
+        sut.guess("word")
+        let result = sut.state().letters
+        XCTAssertEqual(result, "####")
+    }
 
 }
