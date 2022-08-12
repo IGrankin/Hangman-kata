@@ -9,12 +9,18 @@ import XCTest
 @testable import Hangman_kata
 
 class Hangman_kataTests: XCTestCase {
-
+    
+    var sut: Hangman!
+    
+    override func setUp() {
+        super.setUp()
+        sut = Hangman()
+    }
+    
     func test_stateShouldReturnEmptyString() {
-        let result = Hangman().state()
+        let result = sut.state()
         XCTAssertEqual(result, "")
     }
-
 }
 
 public class Hangman {
