@@ -38,7 +38,9 @@ class Hangman_kataTests: XCTestCase {
         sut = Hangman(guessedWord: "word", guesses: 4)
         sut.guess("B")
         let result = sut.state().guesses
-        XCTAssertEqual(result, "B")
+        XCTAssertEqual(result, "B ")
     }
+    
+    
 
 }

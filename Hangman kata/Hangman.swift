@@ -23,14 +23,15 @@ public class Hangman {
     
     private var guessedWord: String
     private var leftGuesses: Int
+    private var userGuesses: String = ""
     
     init(guessedWord: String, guesses: Int) {
-        self.guessedWord = guessedWord
+        self.guessedWord = guessedWord.capitalized
         self.leftGuesses = guesses
     }
     
     func guess(_ letter: String) {
-        
+        userGuesses += "\(letter) "
     }
     
     func state() -> HangmanState {
@@ -38,7 +39,7 @@ public class Hangman {
             gameStatus: .inProgress,
             letters: guessedWord.hiddenString(),
             leftGuesses: leftGuesses,
-            guesses: "B"
+            guesses: userGuesses
         )
     }
 }
