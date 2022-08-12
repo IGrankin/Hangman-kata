@@ -41,6 +41,11 @@ class Hangman_kataTests: XCTestCase {
         XCTAssertEqual(result, "B ")
     }
     
-    
+    func test_guessShouldIngoreNumbers() {
+        sut = Hangman(guessedWord: "word", guesses: 4)
+        sut.guess("1")
+        let result = sut.state().guesses
+        XCTAssertEqual(result, "")
+    }
 
 }
