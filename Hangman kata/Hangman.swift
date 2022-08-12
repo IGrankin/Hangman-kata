@@ -28,7 +28,17 @@ public class Hangman {
     func state() -> HangmanState {
         return HangmanState(
             gameStatus: .inProgress,
-            letters: "####"
+            letters: guessedWord.hiddenString()
         )
+    }
+}
+
+extension String {
+    func hiddenString() -> String {
+        var hiddenString = ""
+        for _ in 0..<self.count {
+            hiddenString.append("#")
+        }
+        return hiddenString
     }
 }
