@@ -21,6 +21,12 @@ class Hangman_kataTests: XCTestCase {
         let result = sut.state()
         XCTAssertEqual(result, "")
     }
+    
+    func test_stateShouldReturnActualStatus() {
+        let result = sut.state()
+        XCTAssertEqual(result, .inProgress)
+    }
+
 }
 
 public class Hangman {
