@@ -18,10 +18,17 @@ public enum GameStatus {
 }
 
 public class Hangman {
+    
+    private var guessedWord: String
+    
+    init(guessedWord: String) {
+        self.guessedWord = guessedWord
+    }
+    
     func state() -> HangmanState {
         return HangmanState(
             gameStatus: .inProgress,
-            letters: ""
+            letters: "####"
         )
     }
 }
