@@ -31,6 +31,9 @@ public class Hangman {
     }
     
     func guess(_ letter: String) {
+        if letter == "1" {
+            return
+        }
         userGuesses += "\(letter) "
     }
     
