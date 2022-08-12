@@ -11,6 +11,7 @@ public struct HangmanState {
     var gameStatus: GameStatus
     var letters: String
     var leftGuesses: Int
+    var guesses: String
 }
 
 public enum GameStatus {
@@ -28,11 +29,16 @@ public class Hangman {
         self.leftGuesses = guesses
     }
     
+    func guess(_ letter: String) {
+        
+    }
+    
     func state() -> HangmanState {
         return HangmanState(
             gameStatus: .inProgress,
             letters: guessedWord.hiddenString(),
-            leftGuesses: leftGuesses
+            leftGuesses: leftGuesses,
+            guesses: "B"
         )
     }
 }
