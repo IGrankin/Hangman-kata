@@ -36,6 +36,10 @@ public class Hangman {
     }
     
     func guess(_ letter: String) {
+        guard gameStatus == .inProgress else {
+            return
+        }
+        
         let capitalizedLetter = letter.capitalized
         
         if isAppliable(letter: capitalizedLetter) {
