@@ -115,4 +115,100 @@ class Hangman_kataTests: XCTestCase {
         let result = sut.state().letters
         XCTAssertEqual(result, "##MM##")
     }
+    
+    // MARK: - Examples
+    
+    func test_exampleWithLost() {
+        sut = Hangman(guessedWord: "BELL", guesses: 3)
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "####")
+        XCTAssertEqual(sut.state().leftGuesses, 3)
+        XCTAssertEqual(sut.state().guesses, "")
+        
+        sut.guess("X")
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "####")
+        XCTAssertEqual(sut.state().leftGuesses, 2)
+        XCTAssertEqual(sut.state().guesses, "X ")
+        
+        sut.guess("#")
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "####")
+        XCTAssertEqual(sut.state().leftGuesses, 2)
+        XCTAssertEqual(sut.state().guesses, "X ")
+        
+        sut.guess("BB")
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "####")
+        XCTAssertEqual(sut.state().leftGuesses, 2)
+        XCTAssertEqual(sut.state().guesses, "X ")
+        
+        sut.guess("L")
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "##LL")
+        XCTAssertEqual(sut.state().leftGuesses, 1)
+        XCTAssertEqual(sut.state().guesses, "X L ")
+        
+        sut.guess("Y")
+        XCTAssertEqual(sut.state().gameStatus, .lost)
+        XCTAssertEqual(sut.state().letters, "##LL")
+        XCTAssertEqual(sut.state().leftGuesses, 0)
+        XCTAssertEqual(sut.state().guesses, "X L Y ")
+        
+        sut.guess("Z")
+        XCTAssertEqual(sut.state().gameStatus, .lost)
+        XCTAssertEqual(sut.state().letters, "##LL")
+        XCTAssertEqual(sut.state().leftGuesses, 0)
+        XCTAssertEqual(sut.state().guesses, "X L Y ")
+    }
+    
+    func test_exampleWithWin() {
+        sut = Hangman(guessedWord: "BELL", guesses: 3)
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "####")
+        XCTAssertEqual(sut.state().leftGuesses, 3)
+        XCTAssertEqual(sut.state().guesses, "")
+        
+        sut.guess("X")
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "####")
+        XCTAssertEqual(sut.state().leftGuesses, 2)
+        XCTAssertEqual(sut.state().guesses, "X ")
+        
+        sut.guess("#")
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "####")
+        XCTAssertEqual(sut.state().leftGuesses, 2)
+        XCTAssertEqual(sut.state().guesses, "X ")
+        
+        sut.guess("BB")
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "####")
+        XCTAssertEqual(sut.state().leftGuesses, 2)
+        XCTAssertEqual(sut.state().guesses, "X ")
+        
+        sut.guess("L")
+        XCTAssertEqual(sut.state().gameStatus, .inProgress)
+        XCTAssertEqual(sut.state().letters, "##LL")
+        XCTAssertEqual(sut.state().leftGuesses, 1)
+        XCTAssertEqual(sut.state().guesses, "X L ")
+        
+        sut.guess("Y")
+        XCTAssertEqual(sut.state().gameStatus, .lost)
+        XCTAssertEqual(sut.state().letters, "##LL")
+        XCTAssertEqual(sut.state().leftGuesses, 0)
+        XCTAssertEqual(sut.state().guesses, "X L Y ")
+        
+        sut.guess("B")
+        XCTAssertEqual(sut.state().gameStatus, .lost)
+        XCTAssertEqual(sut.state().letters, "B#LL")
+        XCTAssertEqual(sut.state().leftGuesses, 0)
+        XCTAssertEqual(sut.state().guesses, "X L Y B ")
+        
+        sut.guess("E")
+        XCTAssertEqual(sut.state().gameStatus, .lost)
+        XCTAssertEqual(sut.state().letters, "##LL")
+        XCTAssertEqual(sut.state().leftGuesses, 0)
+        XCTAssertEqual(sut.state().guesses, "X L Y B E ")
+    }
 }
