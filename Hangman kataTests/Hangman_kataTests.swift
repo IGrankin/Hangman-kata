@@ -57,5 +57,11 @@ class Hangman_kataTests: XCTestCase {
         let result = sut.state().guesses
         XCTAssertEqual(result, "B ")
     }
+    
+    func test_oneLetterShouldDecreaseLeftGuessesCount() {
+        sut.guess("b")
+        let result = sut.state().leftGuesses
+        XCTAssertEqual(result, 3)
+    }
 
 }
