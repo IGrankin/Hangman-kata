@@ -22,12 +22,14 @@ public enum GameStatus {
 public class Hangman {
     
     private var guessedWord: String
+    private var hiddenWord: String
     private var leftGuesses: Int
     private var userGuesses: String = ""
     
     init(guessedWord: String, guesses: Int) {
         self.guessedWord = guessedWord.capitalized
         self.leftGuesses = guesses
+        self.hiddenWord = guessedWord.hiddenString()
     }
     
     func guess(_ letter: String) {
@@ -35,18 +37,23 @@ public class Hangman {
             return
         }
         
-        let range = NSRange(location: 0, length: letter.utf16.count)
-        let regex = try! NSRegularExpression(pattern: "[A-Za-z]")
-        if regex.firstMatch(in: letter, range: range) != nil {
-            userGuesses += "\(letter.capitalized) "
+        let capitalizedLetter = letter.capitalized
+        
+        let range = NSRange(location: 0, length: capitalizedLetter.utf16.count)
+        let regex = try! NSRegularExpression(pattern: "[A-Z]")
+        if regex.firstMatch(in: capitalizedLetter, range: range) != nil {
+            userGuesses += "\(capitalizedLetter) "
             leftGuesses -= 1
+            if let letterRange = guessedWord.range(of: capitalizedLetter) {
+                hiddenWord = hiddenWord.replacingCharacters(in: letterRange, with: capitalizedLetter)
+            }
         }
     }
     
     func state() -> HangmanState {
         return HangmanState(
             gameStatus: .inProgress,
-            letters: guessedWord.hiddenString(),
+            letters: hiddenWord,
             leftGuesses: leftGuesses,
             guesses: userGuesses
         )

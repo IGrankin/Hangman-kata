@@ -70,5 +70,4 @@ class Hangman_kataTests: XCTestCase {
         XCTAssertEqual(result.leftGuesses, 3)
         XCTAssertEqual(result.letters, "W###")
     }
-
 }
