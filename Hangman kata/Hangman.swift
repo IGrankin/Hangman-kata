@@ -73,6 +73,10 @@ public class Hangman {
         if !hiddenWord.contains("#") && leftGuesses == 0 {
             return .win
         }
+        
+        if hiddenWord.contains("#") && leftGuesses == 0 {
+            return .lost
+        }
         return previousStatus
     }
     
