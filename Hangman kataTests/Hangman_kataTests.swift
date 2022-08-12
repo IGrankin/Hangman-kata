@@ -11,8 +11,14 @@ import XCTest
 class Hangman_kataTests: XCTestCase {
 
     func test_stateShouldReturnEmptyString() {
-        let result = sut.state()
+        let result = Hangman().state()
         XCTAssertEqual(result, "")
     }
 
+}
+
+public class Hangman {
+    func state() -> String {
+        ""
+    }
 }
