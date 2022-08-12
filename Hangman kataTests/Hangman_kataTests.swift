@@ -23,17 +23,3 @@ class Hangman_kataTests: XCTestCase {
     }
 
 }
-
-struct HangmanState {
-    var gameStatus: GameStatus
-}
-
-enum GameStatus {
-    case inProgress
-}
-
-public class Hangman {
-    func state() -> HangmanState {
-        return HangmanState(gameStatus: .inProgress)
-    }
-}

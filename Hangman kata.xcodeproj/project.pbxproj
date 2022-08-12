@@ -10,6 +10,7 @@
 		6D45370628A6C89700DB0527 /* Hangman_kata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4536FD28A6C89700DB0527 /* Hangman_kata.framework */; };
 		6D45370B28A6C89700DB0527 /* Hangman_kataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45370A28A6C89700DB0527 /* Hangman_kataTests.swift */; };
 		6D45370C28A6C89700DB0527 /* Hangman_kata.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D45370028A6C89700DB0527 /* Hangman_kata.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D45371628A6CC7300DB0527 /* Hangman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45371528A6CC7300DB0527 /* Hangman.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,7 @@
 		6D45370028A6C89700DB0527 /* Hangman_kata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hangman_kata.h; sourceTree = "<group>"; };
 		6D45370528A6C89700DB0527 /* Hangman kataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hangman kataTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D45370A28A6C89700DB0527 /* Hangman_kataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hangman_kataTests.swift; sourceTree = "<group>"; };
+		6D45371528A6CC7300DB0527 /* Hangman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hangman.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				6D45370028A6C89700DB0527 /* Hangman_kata.h */,
+				6D45371528A6CC7300DB0527 /* Hangman.swift */,
 			);
 			path = "Hangman kata";
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 				TargetAttributes = {
 					6D4536FC28A6C89700DB0527 = {
 						CreatedOnToolsVersion = 13.3.1;
+						LastSwiftMigration = 1330;
 					};
 					6D45370428A6C89700DB0527 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -191,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D45371628A6CC7300DB0527 /* Hangman.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +340,7 @@
 		6D45371028A6C89700DB0527 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -356,6 +362,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -363,6 +370,7 @@
 		6D45371128A6C89700DB0527 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -391,6 +399,7 @@
 		6D45371328A6C89700DB0527 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VK395NXJ86;
@@ -406,6 +415,7 @@
 		6D45371428A6C89700DB0527 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VK395NXJ86;
