@@ -36,24 +36,23 @@ public class Hangman {
     }
     
     func guess(_ letter: String) {
-        guard !letter.isEmpty, letter.count == 1 else {
-            return
-        }
-        
         let capitalizedLetter = letter.capitalized
         
-        let range = NSRange(location: 0, length: capitalizedLetter.utf16.count)
-        let regex = try! NSRegularExpression(pattern: "[A-Z]")
-        if regex.firstMatch(in: capitalizedLetter, range: range) != nil {
+        if isAppliable(letter: capitalizedLetter) {
             userGuesses += "\(capitalizedLetter) "
             leftGuesses -= 1
-            if let letterRange = guessedWord.range(of: capitalizedLetter) {
-                hiddenWord = hiddenWord.replacingCharacters(in: letterRange, with: capitalizedLetter)
-            }
             
-            if !hiddenWord.contains("#") && leftGuesses == 0 {
-                gameStatus = .win
-            }
+            hiddenWord = openIfNeeded(
+                letter: capitalizedLetter,
+                in: hiddenWord,
+                using: guessedWord
+            )
+            
+            gameStatus = updateGameStatus(
+                hiddenWord: hiddenWord,
+                leftGuesses: leftGuesses,
+                previousStatus: gameStatus
+            )
         }
     }
     
@@ -64,6 +63,30 @@ public class Hangman {
             leftGuesses: leftGuesses,
             guesses: userGuesses
         )
+    }
+    
+    func updateGameStatus(hiddenWord: String, leftGuesses: Int, previousStatus: GameStatus) -> GameStatus {
+        if !hiddenWord.contains("#") && leftGuesses == 0 {
+            return .win
+        }
+        return previousStatus
+    }
+    
+    func openIfNeeded(letter: String, in hiddenWord: String, using guessedWord: String) -> String {
+        if let letterRange = guessedWord.range(of: letter) {
+            return hiddenWord.replacingCharacters(in: letterRange, with: letter)
+        }
+        return hiddenWord
+    }
+    
+    func isAppliable(letter: String) -> Bool {
+        guard !letter.isEmpty, letter.count == 1 else {
+            return false
+        }
+        
+        let range = NSRange(location: 0, length: letter.utf16.count)
+        let regex = try! NSRegularExpression(pattern: "[A-Z]")
+        return regex.firstMatch(in: letter, range: range) != nil
     }
 }
 
