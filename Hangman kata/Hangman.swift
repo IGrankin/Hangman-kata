@@ -81,7 +81,6 @@ public class Hangman {
     }
     
     func openIfNeeded(letter: String, in hiddenWord: String, using guessedWord: String) -> String {
-        var mutableHiddenWord = NSMutableString(string: hiddenWord)
         var updatedHiddenWord = hiddenWord
         
         let textRange = NSRange(location: 0, length: guessedWord.utf16.count)
