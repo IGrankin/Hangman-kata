@@ -27,5 +27,11 @@ class Hangman_kataTests: XCTestCase {
         let result = sut.state().letters
         XCTAssertEqual(result, "####")
     }
+    
+    func test_stateShouldReturnLeftGuesses() {
+        sut = Hangman(guessedWord: "word", guesses: 4)
+        let result = sut.state().leftGuesses
+        XCTAssertEqual(result, 4)
+    }
 
 }
