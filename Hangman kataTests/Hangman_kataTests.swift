@@ -24,7 +24,7 @@ class Hangman_kataTests: XCTestCase {
     
     func test_stateShouldReturnGeussedLetters() {
         let result = sut.state().letters
-        XCTAssertEqual(result, "####")
+        XCTAssertEqual(result, "")
     }
 
 }

@@ -21,7 +21,7 @@ public class Hangman {
     func state() -> HangmanState {
         return HangmanState(
             gameStatus: .inProgress,
-            letters: "####"
+            letters: ""
         )
     }
 }
