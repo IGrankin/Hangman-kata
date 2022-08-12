@@ -9,6 +9,7 @@ import Foundation
 
 public struct HangmanState {
     var gameStatus: GameStatus
+    var letters: String
 }
 
 public enum GameStatus {
@@ -18,6 +19,9 @@ public enum GameStatus {
 
 public class Hangman {
     func state() -> HangmanState {
-        return HangmanState(gameStatus: .inProgress)
+        return HangmanState(
+            gameStatus: .inProgress,
+            letters: "####"
+        )
     }
 }
