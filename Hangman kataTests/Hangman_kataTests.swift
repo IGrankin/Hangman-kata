@@ -82,4 +82,17 @@ class Hangman_kataTests: XCTestCase {
         XCTAssertEqual(result.leftGuesses, 0)
         XCTAssertEqual(result.guesses, "W O R D ")
     }
+    
+    func test_gameShouldDoNothingWhenUserTryToInputSymbolsAfterWinState() {
+        sut.guess("w")
+        sut.guess("o")
+        sut.guess("r")
+        sut.guess("d")
+        sut.guess("d")
+        let result = sut.state()
+        XCTAssertEqual(result.gameStatus, .win)
+        XCTAssertEqual(result.letters, "WORD")
+        XCTAssertEqual(result.leftGuesses, 0)
+        XCTAssertEqual(result.guesses, "W O R D ")
+    }
 }
