@@ -79,7 +79,7 @@ class Hangman_kataTests: XCTestCase {
         let result = sut.state()
         XCTAssertEqual(result.gameStatus, .win)
         XCTAssertEqual(result.letters, "WORD")
-        XCTAssertEqual(result.letters, 0)
+        XCTAssertEqual(result.leftGuesses, 0)
         XCTAssertEqual(result.guesses, "W O R D ")
     }
 }

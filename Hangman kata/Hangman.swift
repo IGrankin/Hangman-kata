@@ -16,6 +16,7 @@ public struct HangmanState {
 
 public enum GameStatus {
     case inProgress
+    case win
     case lost
 }
 
@@ -25,11 +26,13 @@ public class Hangman {
     private var hiddenWord: String
     private var leftGuesses: Int
     private var userGuesses: String = ""
+    private var gameStatus: GameStatus
     
     init(guessedWord: String, guesses: Int) {
-        self.guessedWord = guessedWord.capitalized
+        self.guessedWord = guessedWord.uppercased()
         self.leftGuesses = guesses
         self.hiddenWord = guessedWord.hiddenString()
+        self.gameStatus = .inProgress
     }
     
     func guess(_ letter: String) {
@@ -47,12 +50,16 @@ public class Hangman {
             if let letterRange = guessedWord.range(of: capitalizedLetter) {
                 hiddenWord = hiddenWord.replacingCharacters(in: letterRange, with: capitalizedLetter)
             }
+            
+            if !hiddenWord.contains("#") && leftGuesses == 0 {
+                gameStatus = .win
+            }
         }
     }
     
     func state() -> HangmanState {
         return HangmanState(
-            gameStatus: .inProgress,
+            gameStatus: gameStatus,
             letters: hiddenWord,
             leftGuesses: leftGuesses,
             guesses: userGuesses
