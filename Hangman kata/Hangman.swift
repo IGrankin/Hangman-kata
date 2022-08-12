@@ -31,10 +31,15 @@ public class Hangman {
     }
     
     func guess(_ letter: String) {
-        if letter == "1" {
+        guard !letter.isEmpty, letter.count == 1 else {
             return
         }
-        userGuesses += "\(letter) "
+        
+        let range = NSRange(location: 0, length: letter.utf16.count)
+        let regex = try! NSRegularExpression(pattern: "[A-Za-z]")
+        if regex.firstMatch(in: letter, range: range) != nil {
+            userGuesses += "\(letter.capitalized) "
+        }
     }
     
     func state() -> HangmanState {

@@ -47,5 +47,19 @@ class Hangman_kataTests: XCTestCase {
         let result = sut.state().guesses
         XCTAssertEqual(result, "")
     }
+    
+    func test_guessShouldIngoreStringsWithSizeMoreThan1() {
+        sut = Hangman(guessedWord: "word", guesses: 4)
+        sut.guess("bb")
+        let result = sut.state().guesses
+        XCTAssertEqual(result, "")
+    }
+    
+    func test_guessShouldApproveLowercasesSymbols() {
+        sut = Hangman(guessedWord: "word", guesses: 4)
+        sut.guess("b")
+        let result = sut.state().guesses
+        XCTAssertEqual(result, "B ")
+    }
 
 }
