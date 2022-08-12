@@ -81,10 +81,20 @@ public class Hangman {
     }
     
     func openIfNeeded(letter: String, in hiddenWord: String, using guessedWord: String) -> String {
-        if let letterRange = guessedWord.range(of: letter) {
-            return hiddenWord.replacingCharacters(in: letterRange, with: letter)
+        var mutableHiddenWord = NSMutableString(string: hiddenWord)
+        var updatedHiddenWord = hiddenWord
+        
+        let textRange = NSRange(location: 0, length: guessedWord.utf16.count)
+        let regex = try! NSRegularExpression(pattern: "[\(letter)]")
+        let ranges = regex.matches(in: guessedWord, range: textRange)
+        
+        for textCheckingRange in ranges {
+            if let replacementRange = Range(textCheckingRange.range, in: guessedWord) {
+                updatedHiddenWord = updatedHiddenWord.replacingCharacters(in: replacementRange, with: letter)
+            }
         }
-        return hiddenWord
+        
+        return String(updatedHiddenWord)
     }
     
     func isAppliable(letter: String) -> Bool {
