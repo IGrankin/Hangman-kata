@@ -108,4 +108,11 @@ class Hangman_kataTests: XCTestCase {
         XCTAssertEqual(result.leftGuesses, 0)
         XCTAssertEqual(result.guesses, "W A L E ")
     }
+    
+    func test_guessOpen2SameSymbols() {
+        sut = Hangman(guessedWord: "commit", guesses: 5)
+        sut.guess("m")
+        let result = sut.state().letters
+        XCTAssertEqual(result, "##MM##")
+    }
 }
